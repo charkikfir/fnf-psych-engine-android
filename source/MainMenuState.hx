@@ -33,13 +33,11 @@ class MainMenuState extends MusicBeatState
 	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
-		'story_mode',
+				'story_mode',
 		'freeplay',
 		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
-		'credits',
-		#if !switch 'donate', #end
-		'options'
+		'options',
+                'extra'
 	];
 
 	var magenta:FlxSprite;
@@ -118,6 +116,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
+                        menuItem.scale.set(0.8, 0.8);
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
@@ -240,16 +239,25 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
-									case 'story_mode':
+													case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
+                                                                        case 'stare':
+                                                                        PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
+                                                                         LoadingState.loadAndSwitchState(new PlayState());
+                                                                         case 'face-him':
+                                                                        PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
+                                       LoadingState.loadAndSwitchState(new PlayState());
+                                                                       case 'carol':
+                                                                        PlayState.SONG = Song.loadFromJson('carol-hard', 'carol');
+                                       LoadingState.loadAndSwitchState(new PlayState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
 									case 'mods':
 										MusicBeatState.switchState(new ModsMenuState());
 									#end
-									case 'awards':
-										MusicBeatState.switchState(new AchievementsMenuState());
+									case 'extra':
+										MusicBeatState.switchState(new ExtraMenuState());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
 									case 'options':
@@ -274,6 +282,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.screenCenter(X);
+                        spr.x += -300; 
 		});
 	}
 
