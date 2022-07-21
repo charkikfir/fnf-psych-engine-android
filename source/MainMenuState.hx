@@ -240,16 +240,7 @@ class MainMenuState extends MusicBeatState
 								switch (daChoice)
 								{
 									case 'story_mode':
-									MusicBeatState.switchState(new StoryMenuState());
-                                                                        case 'stare':
-                                                                        PlayState.SONG = Song.loadFromJson('stare-stare', 'stare');
-                                                                         LoadingState.loadAndSwitchState(new PlayState());
-                                                                         case 'face-him':
-                                                                        PlayState.SONG = Song.loadFromJson('face-him-hard', 'face-him');
-                                                                       LoadingState.loadAndSwitchState(new PlayState());
-                                                                       case 'carol':
-                                                                        PlayState.SONG = Song.loadFromJson('carol-hard', 'carol');
-                                                                        LoadingState.loadAndSwitchState(new PlayState());
+									MusicBeatState.switchState(new StoryMenuState());                                       
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
