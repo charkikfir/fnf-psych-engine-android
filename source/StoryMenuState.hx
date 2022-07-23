@@ -78,8 +78,8 @@ class StoryMenuState extends MusicBeatState
 		add(grpWeekText);
 
 		var blackBarThingie:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
-		bg.setGraphicSize(Std.int(blackBarThingie.width * 1.175));
-		bg.screenCenter();
+		blackBarThingie.setGraphicSize(Std.int(blackBarThingie.width * 1.175));
+		blackBarThingie.screenCenter();
 		blackBarThingie.antialiasing = ClientPrefs.globalAntialiasing;
 		add(blackBarThingie);
 
