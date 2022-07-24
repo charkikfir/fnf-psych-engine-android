@@ -9,7 +9,11 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import haxe.Json;
+import StageData;
+import FunkinLua;
 #if android
+#if MODS_ALLOWED
 import android.Hardware;
 #end
 
@@ -70,6 +74,19 @@ class GameOverSubstate extends MusicBeatSubstate
 			Hardware.vibrate(vibrationTime);
 		}
 		#end
+
+		#if (MODS_ALLOWED && LUA_ALLOWED)
+		var doPush:Bool = false;
+		var luaFile:String = 'stages/' + curStage + '.lua';
+		if(FileSystem.exists(Paths.modFolders(luaFile))) {
+			luaFile = Paths.modFolders(luaFile);
+			doPush = true;
+		} else {
+			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
+			if(FileSystem.exists(luaFile)) {
+				doPush = true;
+			}
+		}
 
 		Conductor.changeBPM(100);
 		// FlxG.camera.followLerp = 1;
